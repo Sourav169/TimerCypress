@@ -9,7 +9,9 @@ describe("toggle",function(){
             console.log(val.text());
         })
         cy.get("#pause").click()
-         
+          cy.get("#print").then((val)=>{
+            console.log(val.text());
+        })
         
         
       
