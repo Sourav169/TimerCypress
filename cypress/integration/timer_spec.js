@@ -1,5 +1,4 @@
 
-
 describe("toggle",function(){
     it("initial setup",function(){
       
@@ -14,23 +13,22 @@ describe("toggle",function(){
 
 describe("toggle",function(){
     it("timer",function(){
-       cy.clock()
+        cy.clock()
         cy.visit("./index.html")
         cy.get("#play").click()
-        var i;
-     
-        cy.tick(2000)
-        cy.get("#print").then((time)=>{
+        cy.tick(2000);
+        cy.get("#pause").click();
+        cy.get("#print").then((val1)=>{
+           let v = val1.text();
+           cy.get("#play").click()
+           cy.tick(1050);
+           cy.get("#print").then((val2)=>{
+               console.log(v,val2.text());
+               expect(parseInt(v) < parseInt(val2.text())).to.equal(true);
+           });
+            
+              
           
-           i=time.text()
-           cy.get("#print").contains(i)
-           
-         
-           
-        })
-        cy.get("#pause").click()
-        cy.get("#print").contains(0)
-        cy.get("#play").click()  
           
      
     })
